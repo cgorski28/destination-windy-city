@@ -6,7 +6,7 @@ const Review = require('./models/review.js')
 module.exports.isLoggedIn = (req, res, next) => {
     if(!req.isAuthenticated()){
         req.session.returnTo = req.originalUrl;
-        req.flash('error', 'You must be authenticatd to create a new campground')
+        req.flash('error', 'You must be authenticated to create a new campground')
         return res.redirect('/login');
     }
     next();
