@@ -42,7 +42,12 @@ const CampgroundSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Review'
         }
-    ]
+    ],
+    category: {
+        type: String,
+        enum: ['Restaurant', 'Bar', 'Club', 'Activity'],
+        required: true
+    }
 }, opts);
 
 CampgroundSchema.virtual('properties.popUpMarkup').get(function () {

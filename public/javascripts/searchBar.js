@@ -1,7 +1,6 @@
 const searchBar = document.forms[0].querySelector('input')
 
 searchBar.addEventListener('keyup', function(e){
-    console.log('search term: ', e.target.value)
     const term = e.target.value.toLowerCase()
     const allCards = document.querySelectorAll('.card')
     Array.from(allCards).forEach(function(item){

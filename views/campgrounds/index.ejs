@@ -1,9 +1,29 @@
 <% layout('layouts/boilerplate') %>
     <div id="cluster-map"></div>
     <h1 class="text-center my-3">All Attractions</h1>
-    <form class="mb-3" id="search-list">
-        <input type="text" class='form-control' placeholder="Search entries...">
-    </form>
+
+
+
+    <div class="row justify-content-center">
+        <form class="col-10 mb-3" id="search-list">
+            <input type="text" class='form-control' placeholder="Search entries...">
+        </form>
+
+        <div class="col-2 dropdown">
+            <button class="btn btn-secondary dropdown-toggle float-end" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Filter Items
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Restaurants</a></li>
+                <li><a class="dropdown-item" href="#">Bars</a></li>
+                <li><a class="dropdown-item" href="#">Clubs</a></li>
+                <li><a class="dropdown-item" href="#">Activities</a></li>
+            </ul>
+        </div>
+
+    </div>
+        
     <% for (let campground of campgrounds) { %>
         <div class="card mb-3">
             <div class="row">
@@ -18,9 +38,20 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">
-                            <%= campground.title %>
-                        </h5>
+                        <div class="row justify-content-between">
+                            <div class="col-4">
+                                <h5 class="card-title">
+                                    <%= campground.title %>
+                                </h5>
+                            </div>
+                            <div class="col-4">
+                                <% if(campground.category) { %>
+                                    <span class="badge rounded-pill bg-secondary float-end">
+                                        <%=campground.category%>
+                                    </span>
+                                    <% } %>
+                            </div>
+                        </div>
                         <p class="card-text">
                             <%= campground.description %>
                         </p>
@@ -31,17 +62,19 @@
                         </p>
                         <a class="btn btn-primary" href="/campgrounds/<%= campground._id  %>">View <%= campground.title
                                 %> </a>
+
                     </div>
                 </div>
             </div>
         </div>
         <% } %>
-<div class="d-grid gap-2">
-    <a class="btn btn-primary m-3 " type="button" href="/campgrounds/new">Add new Attraction</a>
-</div>
-<script>
-    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-    const campgrounds = {features: <%- JSON.stringify(campgrounds) %> }
-</script>
-<script src="/javascripts/clusterMap.js"></script>
-<script src="/javascripts/searchBar.js"></script>
+            <div class="d-grid gap-2">
+                <a class="btn btn-primary m-3 " type="button" href="/campgrounds/new">Add new Attraction</a>
+            </div>
+            <script>
+                const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+                const campgrounds = {features: <%- JSON.stringify(campgrounds) %> }
+            </script>
+            <script src="/javascripts/clusterMap.js"></script>
+            <script src="/javascripts/searchBar.js"></script>
+            <script src="/javascripts/filter.js"></script>

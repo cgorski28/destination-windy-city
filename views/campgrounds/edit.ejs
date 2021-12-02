@@ -7,7 +7,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="title">Attraction Name</label>
                     <input class="form-control" type="text" id="title" name="campground[title]"
-                        value="<%=campground.title%>" value="<%=campground.title%>" placeholder="campground name"
+                        value="<%=campground.title%>" placeholder="campground name"
                         required>
                     <div class="valid-feedback">
                         Looks good!
@@ -41,6 +41,19 @@
                     </div>
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="category">Category</label>
+                    <div class="mb-3 category-choices">
+                        <input type="radio" id="first-rate1" name="campground[category]" value="Restaurant" />
+                        <label class="pe-3" for="first-rate1" title="Restaurant">Restaurant</label>
+                        <input type="radio" id="first-rate2" name="campground[category]" value="Bar"  />
+                        <label class="pe-3" for="first-rate1" title="Bar">Bar</label>
+                        <input type="radio" id="first-rate3" name="campground[category]" value="Club" />
+                        <label class="pe-3" for="first-rate1" title="Club">Club</label>
+                        <input type="radio" id="first-rate4" name="campground[category]" value="Activity" />
+                        <label class="pe-3" for="first-rate1" title="Activity">Activity</label>
+                    </div>
+                </div>
+                <div class="mb-3">
                     <label for="image" class="form-label">Add Images</label>
                     <input class="form-control" type="file" id="image" name="image" multiple>
                 </div>
@@ -60,3 +73,24 @@
             <a href="/campgrounds/<%=campground._id%>">Back To Attractions</a>
         </div>
     </div>
+    <script>
+        var category = '<%=campground.category%>'  
+        switch(category) {
+            case 'Restaurant':
+                document.querySelector('#first-rate1').checked = true;    
+            break;
+
+            case 'Bar':
+                document.querySelector('#first-rate2').checked = true;    
+            break;
+
+            case 'Club':
+                document.querySelector('#first-rate3').checked = true;    
+            break;
+
+            case 'Activity':
+                document.querySelector('#first-rate4').checked = true;    
+            break;
+        }
+
+    </script>

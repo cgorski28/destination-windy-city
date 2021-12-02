@@ -22,8 +22,10 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
     await Campground.deleteMany({});
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < 30; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
+        const categories = ['Restaurant', 'Bar', 'Club', 'Activity']
+        const randomCategory = Math.floor(Math.random() * 4)
         const price = Math.floor(Math.random() * 20) + 10;
         const camp = new Campground({
             author: '618ca2ac0f05153058b1e6dc',
@@ -44,7 +46,8 @@ const seedDB = async () => {
                     url: 'https://res.cloudinary.com/dboytlu1p/image/upload/v1636948449/YelpCamp/dudgltcccr5w4vchjbhf.jpg',
                     filename: 'YelpCamp/dudgltcccr5w4vchjbhf'
                 }
-            ]
+            ],
+            category: categories[randomCategory]
         })
         await camp.save();
     }
