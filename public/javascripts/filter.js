@@ -8,7 +8,9 @@ dropDown.addEventListener('click', function(e){
     const allCards = document.querySelectorAll('.card')
     Array.from(allCards).forEach(function(item){
         const category = item.querySelector('span').innerText
-        if(category.toLowerCase().indexOf(filterValue) === -1){
+        if(filterValue==='clear filter'){
+            item.style.display = 'block'
+        }else if(category.toLowerCase().indexOf(filterValue) === -1){
             item.style.display='none'
         } else {
             item.style.display = 'block'
