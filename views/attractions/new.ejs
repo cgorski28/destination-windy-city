@@ -3,10 +3,10 @@
     <div class="row">
         <h1 class="text-center">New Attraction</h1>
         <div class="col-md-6 offset-md-3">
-            <form action="/campgrounds" method="POST" class="validated-form" enctype="multipart/form-data" novalidate>
+            <form action="/attractions" method="POST" class="validated-form" enctype="multipart/form-data" novalidate>
                 <div class="mb-3">
                     <label class="form-label" for="title">Attraction Name</label>
-                    <input class="form-control" type="text" id="title" name="campground[title]"
+                    <input class="form-control" type="text" id="title" name="attraction[title]"
                         placeholder="title" required>
                     <div class="valid-feedback">
                         Looks good!
@@ -14,7 +14,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="location">Location</label>
-                    <input class="form-control" type="text" id="location" name="campground[location]"
+                    <input class="form-control" type="text" id="location" name="attraction[location]"
                         placeholder="address" required>
                     <div class="valid-feedback">
                         Looks good!
@@ -22,7 +22,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" type="text" id="description" name="campground[description]"
+                    <textarea class="form-control" type="text" id="description" name="attraction[description]"
                         placeholder="A few words to sum up the experience" required></textarea>
                     <div class="valid-feedback">
                         Looks good!
@@ -30,7 +30,7 @@
                 </div>
                 <!-- <div class="mb-3">
                     <label class="form-label" for="image">Image URL</label>
-                    <input class="form-control" type="text" id="image" name="campground[image]" placeholder="location"
+                    <input class="form-control" type="text" id="image" name="attraction[image]" placeholder="location"
                         required>
                     <div class="valid-feedback">
                         Looks good!
@@ -41,7 +41,7 @@
                     <div class="input-group">
                         <span class="input-group-text" id="price-label">$</span>
                         <input type="text" class="form-control" id="price" aria-label="Amount (to the nearest dollar)"
-                            placeholder="0.00" name="campground[price]" required>
+                            placeholder="0.00" name="attraction[price]" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -50,13 +50,13 @@
                 <div class="mb-3">
                     <label class="form-label" for="category">Category</label>
                     <div class="mb-3">
-                        <input type="radio" id="first-rate1" name="campground[category]" value="Restaurant" />
+                        <input type="radio" id="first-rate1" name="attraction[category]" value="Restaurant" />
                         <label class="pe-3" for="first-rate1" title="Restaurant">Restaurant</label>
-                        <input type="radio" id="first-rate2" name="campground[category]" value="Bar" />
+                        <input type="radio" id="first-rate2" name="attraction[category]" value="Bar" />
                         <label class="pe-3" for="first-rate1" title="Bar">Bar</label>
-                        <input type="radio" id="first-rate3" name="campground[category]" value="Club" />
+                        <input type="radio" id="first-rate3" name="attraction[category]" value="Club" />
                         <label class="pe-3" for="first-rate1" title="Club">Club</label>
-                        <input type="radio" id="first-rate4" name="campground[category]" value="Activity" />
+                        <input type="radio" id="first-rate4" name="attraction[category]" value="Activity" />
                         <label class="pe-3" for="first-rate1" title="Activity">Activity</label>
                     </div>
                 </div>
@@ -68,6 +68,6 @@
                     <button class="btn btn-success">Add Attraction</button>
                 </div>
             </form>
-            <a href="/campgrounds">All Attractions</a>
+            <a href="/attractions">All Attractions</a>
         </div>
     </div>

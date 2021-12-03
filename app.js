@@ -16,13 +16,13 @@ const User = require('./models/user')
 const mongoSanitize = require('express-mongo-sanitize')
 
 const userRoutes = require('./routes/users')
-const campgroundRoutes = require('./routes/campgrounds')
+const attractionRoutes = require('./routes/attractions')
 const reviewRoutes = require('./routes/reviews')
 
 const MongoStore = require('connect-mongo')
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp'
 
-mongoose.connect(dbUrl, {
+mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -89,8 +89,8 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use('/campgrounds', campgroundRoutes)
-app.use('/campgrounds/:id/reviews', reviewRoutes)
+app.use('/attractions', attractionRoutes)
+app.use('/attractions/:id/reviews', reviewRoutes)
 app.use('/', userRoutes)
 
 app.get('/', (req, res) => {
