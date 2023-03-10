@@ -1,0 +1,96 @@
+<% layout('layouts/boilerplate') %>
+
+    <div class="row">
+        <h1 class="text-center">Edit Item</h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/attractions/<%=attraction._id%>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Attraction Name</label>
+                    <input class="form-control" type="text" id="title" name="attraction[title]"
+                        value="<%=attraction.title%>" placeholder="attraction name"
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" type="text" id="location" name="attraction[location]"
+                        value="<%=attraction.location%>" placeholder="location" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description" name="attraction[description]"
+                        required><%=attraction.description%></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="price">Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="price-label">$</span>
+                        <input type="text" class="form-control" id="price" aria-label="Amount (to the nearest dollar)"
+                            value="<%= attraction.price%>" name="attraction[price]" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="category">Category</label>
+                    <div class="mb-3 category-choices">
+                        <input type="radio" id="first-rate1" name="attraction[category]" value="Restaurant" />
+                        <label class="pe-3" for="first-rate1" title="Restaurant">Restaurant</label>
+                        <input type="radio" id="first-rate2" name="attraction[category]" value="Bar"  />
+                        <label class="pe-3" for="first-rate1" title="Bar">Bar</label>
+                        <input type="radio" id="first-rate3" name="attraction[category]" value="Club" />
+                        <label class="pe-3" for="first-rate1" title="Club">Club</label>
+                        <input type="radio" id="first-rate4" name="attraction[category]" value="Activity" />
+                        <label class="pe-3" for="first-rate1" title="Activity">Activity</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Add Images</label>
+                    <input class="form-control" type="file" id="image" name="image" multiple>
+                </div>
+                <div class="mb-3">
+                    <% attraction.image.forEach(function (img, i) { %> 
+                        <img src="<%= img.thumbnail%>" class="img-thumbnail" alt="" >
+                        <div class="form-check-inline">
+                            <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+                        </div>
+                        <label for="image-<%=i%>">Delete?</label>
+                        <% }) %>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-info">Update Attraction</button>
+                </div>
+            </form>
+            <a href="/attractions/<%=attraction._id%>">Back To Attractions</a>
+        </div>
+    </div>
+    <script>
+        var category = '<%=attraction.category%>'  
+        switch(category) {
+            case 'Restaurant':
+                document.querySelector('#first-rate1').checked = true;    
+            break;
+
+            case 'Bar':
+                document.querySelector('#first-rate2').checked = true;    
+            break;
+
+            case 'Club':
+                document.querySelector('#first-rate3').checked = true;    
+            break;
+
+            case 'Activity':
+                document.querySelector('#first-rate4').checked = true;    
+            break;
+        }
+
+    </script>

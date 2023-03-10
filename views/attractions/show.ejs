@@ -3,22 +3,22 @@
 
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-6">
 
-            <div id="campgroundCarousel" class="carousel slide" data-bs-slide="carousel">
+            <div id="attractionCarousel" class="carousel slide" data-bs-slide="carousel">
                 <div class="carousel-inner">
-                    <% campground.image.forEach((img, i)=> { %>
+                    <% attraction.image.forEach((img, i)=> { %>
                         <div class='carousel-item <%= i === 0 ? ' active' : '' %>'>
                             <img src="<%= img.url%>" class="d-block w-100" alt="">
                         </div>
                         <% }) %>
                 </div>
-                <% if(campground.image.length> 1) {%>
-                    <a class="carousel-control-prev" href="#campgroundCarousel" role="button" data-bs-slide="prev">
+                <% if(attraction.image.length> 1) {%>
+                    <a class="carousel-control-prev" href="#attractionCarousel" role="button" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#campgroundCarousel" role="button" data-bs-slide="next">
+                    <a class="carousel-control-next" href="#attractionCarousel" role="button" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
@@ -27,27 +27,38 @@
 
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">
-                        <%= campground.title %>
-                    </h5>
+                    <div class="row justify-content-between">
+                        <div class="col-8">
+                            <h5 class="card-title">
+                                <%= attraction.title %>
+                            </h5>
+                        </div>
+                        <div class="col-4">
+                            <% if(attraction.category) { %>
+                                <span class="badge rounded-pill bg-secondary float-end">
+                                    <%=attraction.category%>
+                                </span>
+                                <% } %>
+                        </div>
+                    </div>
                     <p class="card-text">
-                        <%= campground.description %>
+                        <%= attraction.description %>
                     </p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item text-muted">
-                        <%= campground.location %>
+                        <%= attraction.location %>
                     </li>
-                    <li class="list-group-item">Submitted by <%= campground.author.username %>
+                    <li class="list-group-item">Submitted by <%= attraction.author.username %>
                     </li>
-                    <li class="list-group-item">$<%= campground.price %>/night</li>
+                    <li class="list-group-item">Price: $<%= attraction.price %></li>
                 </ul>
-                <% if(currentUser && campground.author.equals(currentUser._id)) { %>
+                <% if(currentUser && attraction.author.equals(currentUser._id)) { %>
                     <div class="card-body">
-                        <a href="/campgrounds/<%=campground._id%>/edit" class="card-link btn btn-warning">Edit
-                            Campground</a>
-                        <form class="d-inline" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
-                            <button class="btn btn-danger">Delete Campground</button>
+                        <a href="/attractions/<%=attraction._id%>/edit" class="card-link btn btn-warning">Edit
+                            Listing</a>
+                        <form class="d-inline" action="/attractions/<%=attraction._id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete Listing</button>
                         </form>
                     </div>
                     <% } %>
@@ -56,11 +67,11 @@
                         </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
             <div id='map' class='mb-3' ></div>
             <% if(currentUser) { %>
                 <h2>Leave a Review</h2>
-                <form action="/campgrounds/<%= campground._id %>/reviews" method="POST" class="mb-3 validated-form"
+                <form action="/attractions/<%= attraction._id %>/reviews" method="POST" class="mb-3 validated-form"
                     novalidate>
                     <div class="mb-1">
                         <fieldset class="starability-basic">
@@ -89,7 +100,7 @@
                     <button class="btn btn-success">Submit</button>
                 </form>
                 <% } %>
-                    <% for(let review of campground.reviews) { %>
+                    <% for(let review of attraction.reviews) { %>
                         <div class="card mb-3">
                             <div class="card-body">
                                 <h5 class="card-title">
@@ -100,9 +111,9 @@
                                 </p>
                                 <p class="card-text">Review: <%= review.body %>
                                 </p>
-                                <% if(currentUser && campground.author.equals(currentUser._id)) { %>
+                                <% if(currentUser && attraction.author.equals(currentUser._id)) { %>
                                     <form
-                                        action="/campgrounds/<%=campground._id %>/reviews/<%=review._id%>?_method=DELETE"
+                                        action="/attractions/<%=attraction._id %>/reviews/<%=review._id%>?_method=DELETE"
                                         method="POST">
                                         <button class="btn btn-sm btn-danger">Delete</button>
                                     </form>
@@ -115,6 +126,6 @@
     </div>
     <script>
         const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-        const campground = <%- JSON.stringify(campground) %>
+        const attraction = <%- JSON.stringify(attraction) %>
     </script>
     <script src="/javascripts/showPageMap.js"></script>

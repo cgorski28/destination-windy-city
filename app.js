@@ -16,10 +16,13 @@ const User = require('./models/user')
 const mongoSanitize = require('express-mongo-sanitize')
 
 const userRoutes = require('./routes/users')
-const campgroundRoutes = require('./routes/campgrounds')
+const attractionRoutes = require('./routes/attractions')
 const reviewRoutes = require('./routes/reviews')
 
-mongoose.connect('mongodb://localhost:27017/yelp-camp', {
+const MongoStore = require('connect-mongo')
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp'
+
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -43,8 +46,23 @@ app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname,'public')))
 app.use(mongoSanitize())
 
+const secret = process.env.SECRET || 'thisisasecret'
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    crypto: {
+        secret: secret
+    }, 
+    touchAfter: 24 * 3600
+});
+
+store.on('error', function(e){
+    console.log('session store error')
+})
+
 const sessionConfig = {
-    secret: 'secret',
+    store,
+    name: 'session',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -71,8 +89,8 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use('/campgrounds', campgroundRoutes)
-app.use('/campgrounds/:id/reviews', reviewRoutes)
+app.use('/attractions', attractionRoutes)
+app.use('/attractions/:id/reviews', reviewRoutes)
 app.use('/', userRoutes)
 
 app.get('/', (req, res) => {
@@ -90,6 +108,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err })
 })
 
-app.listen(3000, () => {
-    console.log("serving on port 3000")
+const port  = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`serving on port ${port}`)
 })
