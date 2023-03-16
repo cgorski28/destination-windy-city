@@ -63,7 +63,11 @@
                     </div>
                     <% } %>
                         <div class="card-footer text-muted">
-                            2 days ago
+                            Posted on: <% if(attraction.postedOn) { %>
+                                <%= attraction.postedOn %>
+                                <% } else { %>
+                                1/1/2020
+                                <% } %>
                         </div>
             </div>
         </div>
