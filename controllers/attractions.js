@@ -28,7 +28,7 @@ module.exports.createAttraction = async (req, res, next) => {
     filename: f.filename,
   }));
   attraction.author = req.user._id;
-  attraction.postedOn = moment().format("l");
+  attraction.postedOn = moment().format("MM/DD/YYYY");
   //console.log(req.body.attraction)
   await attraction.save();
   req.flash("success", "Successfully made a new attraction");
