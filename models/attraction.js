@@ -48,7 +48,7 @@ const AttractionSchema = new Schema(
       enum: ["Restaurant", "Bar", "Club", "Activity"],
       required: true,
     },
-    postedOn: Date,
+    postedOn: String,
   },
   opts
 );
