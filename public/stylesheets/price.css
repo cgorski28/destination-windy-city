@@ -1,3 +1,7 @@
+.price-level {
+  display: inline;
+}
+
 .price-level-symbol {
   font-size: 16px; /* adjust font size as needed */
   color: gray;
@@ -38,4 +42,8 @@
 .price-level-symbol[data-price-level="4"]::before {
   content: "$$$$";
   color: black;
+}
+
+#price-input {
+  display: none;
 }

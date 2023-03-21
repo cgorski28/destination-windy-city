@@ -56,11 +56,13 @@
                     </div>
                 </div> -->
       <div class="mb-3">
-        <label class="form-label" for="price">Price: </label>
-        <div class="price-level">
-          <span class="price-level-symbol"></span>
-        </div>
-        <div class="input-group">
+        <label class="form-label" for="price"
+          >Price:
+          <div class="price-level">
+            <span class="price-level-symbol"></span>
+          </div>
+        </label>
+        <div class="input-group" id="price-input">
           <span class="input-group-text" id="price-label">$</span>
           <input
             type="text"
@@ -121,11 +123,11 @@
           multiple
         />
       </div>
-      <div class="mb-3">
-        <button class="btn btn-success">Add Attraction</button>
+      <div class="col text-center justify-content-between mb-3">
+        <button class="btn btn-success">Add New Attraction</button>
+        <button class="btn btn-outline-primary">Back to Attractions</button>
       </div>
     </form>
-    <a href="/attractions">All Attractions</a>
   </div>
 </div>
 <script src="/javascripts/autocomplete.js"></script>

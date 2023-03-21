@@ -1,7 +1,8 @@
 <% layout('layouts/boilerplate') %>
     <link rel="stylesheet" href="/stylesheets/stars.css">
+    <link rel="stylesheet" href="/stylesheets/price.css" />
 
-
+    <body onload="setPrice()"></body>
     <div class="row">
         <div class="col-md-6">
 
@@ -51,7 +52,13 @@
                     </li>
                     <li class="list-group-item">Submitted by <%= attraction.author.username %>
                     </li>
-                    <li class="list-group-item">Price: $<%= attraction.price %></li>
+                    <li class="list-group-item">Price: 
+                        <% if(attraction.price <= 4) { %>
+                        <span class="price-level-symbol" data-price-level="<%= attraction.price %>"></span>
+                        <% } else { %>
+                        <span class="price-level-symbol" id="modified-price" data-price-level="setPrice()"></span>
+                        <% } %>
+                    </li>
                 </ul>
                 <% if(currentUser && attraction.author.equals(currentUser._id)) { %>
                     <div class="card-body">
@@ -133,3 +140,19 @@
         const attraction = <%- JSON.stringify(attraction) %>
     </script>
     <script src="/javascripts/showPageMap.js"></script>
+    <script>
+        function setPrice() {
+            let price = '<%= attraction.price %>'
+            let val = 0;
+            if(price <= 10){
+                val = 1
+            } else if(price<=30){
+                val = 2
+            } else if(price <=50){
+                val = 3
+            } else {
+                val = 4
+            }
+            document.getElementById("modified-price").setAttribute("data-price-level", val);
+        }
+    </script>

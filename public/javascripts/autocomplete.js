@@ -21,6 +21,8 @@ function onPlaceChanged() {
     document
       .getElementById("location")
       .setAttribute("value", place.formatted_address);
+    document.getElementById("price").setAttribute("value", place.price_level);
+
     document
       .querySelector(".price-level-symbol")
       .setAttribute("data-price-level", place.price_level);
