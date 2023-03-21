@@ -131,8 +131,13 @@
         <% }) %>
       </div>
       <div class="col text-center justify-content-between mb-3">
-        <button class="btn btn-info">Update Attraction</button>
-        <button class="btn btn-outline-primary">Back to Attractions</button>
+        <button class="btn btn-info mb-3">Update Attraction</button>
+        <a
+          class="btn btn-outline-primary mb-3"
+          type="button"
+          href="/attractions"
+          >Back to Attractions</a
+        >
       </div>
     </form>
   </div>
@@ -174,10 +179,4 @@
   document
     .getElementById("modified-price")
     .setAttribute("data-price-level", val);
-</script>
-<script>
-  document.querySelector(".click").addEventListener("click", (e) => {
-    e.preventDefault();
-    window.location = "/attractions";
-  });
 </script>
