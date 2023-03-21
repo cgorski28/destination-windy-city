@@ -1,0 +1,49 @@
+.price-level {
+  display: inline;
+}
+
+.price-level-symbol {
+  font-size: 16px; /* adjust font size as needed */
+  color: gray;
+}
+
+.price-level-symbol::before {
+  content: "$$$$";
+  color: inherit;
+}
+
+.price-level-symbol[data-price-level="1"]::before {
+  content: "$";
+  color: black;
+}
+.price-level-symbol[data-price-level="1"]::after {
+  content: "$$$";
+  color: gray;
+}
+
+.price-level-symbol[data-price-level="2"]::before {
+  content: "$$";
+  color: black;
+}
+.price-level-symbol[data-price-level="2"]::after {
+  content: "$$";
+  color: gray;
+}
+
+.price-level-symbol[data-price-level="3"]::before {
+  content: "$$$";
+  color: black;
+}
+.price-level-symbol[data-price-level="3"]::after {
+  content: "$";
+  color: gray;
+}
+
+.price-level-symbol[data-price-level="4"]::before {
+  content: "$$$$";
+  color: black;
+}
+
+#price-input {
+  display: none;
+}

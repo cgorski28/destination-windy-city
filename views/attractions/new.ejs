@@ -1,34 +1,53 @@
 <% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/price.css" />
 
-    <div class="row">
-        <h1 class="text-center">New Attraction</h1>
-        <div class="col-md-6 offset-md-3">
-            <form action="/attractions" method="POST" class="validated-form" enctype="multipart/form-data" novalidate>
-                <div class="mb-3">
-                    <label class="form-label" for="attraction">Attraction Name</label>
-                    <input class="form-control" type="text" id="attraction" name="attraction[title]" placeholder="title"
-                        required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="location">Location</label>
-                    <input class="form-control" type="text" id="location" name="attraction[location]"
-                        placeholder="address" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" type="text" id="description" name="attraction[description]"
-                        placeholder="A few words to sum up the experience" required></textarea>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <!-- <div class="mb-3">
+<div class="row">
+  <h1 class="text-center">New Attraction</h1>
+  <div class="col-md-6 offset-md-3">
+    <form
+      action="/attractions"
+      method="POST"
+      class="validated-form"
+      enctype="multipart/form-data"
+      novalidate
+    >
+      <div class="mb-3">
+        <label class="form-label" for="attraction">Attraction Name</label>
+        <input
+          class="form-control"
+          type="text"
+          id="attraction"
+          name="attraction[title]"
+          placeholder="title"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="location">Location</label>
+        <input
+          class="form-control"
+          type="text"
+          id="location"
+          name="attraction[location]"
+          placeholder="address"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea
+          class="form-control"
+          type="text"
+          id="description"
+          name="attraction[description]"
+          placeholder="A few words to sum up the experience"
+          required
+        ></textarea>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <!-- <div class="mb-3">
                     <label class="form-label" for="image">Image URL</label>
                     <input class="form-control" type="text" id="image" name="attraction[image]" placeholder="location"
                         required>
@@ -36,41 +55,83 @@
                         Looks good!
                     </div>
                 </div> -->
-                <div class="mb-3">
-                    <label class="form-label" for="price">Price</label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="price-label">$</span>
-                        <input type="text" class="form-control" id="price" aria-label="Amount (to the nearest dollar)"
-                            placeholder="0.00" name="attraction[price]" required>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="category">Category</label>
-                    <div class="mb-3">
-                        <input type="radio" id="first-rate1" name="attraction[category]" value="Restaurant" />
-                        <label class="pe-3" for="first-rate1" title="Restaurant">Restaurant</label>
-                        <input type="radio" id="first-rate2" name="attraction[category]" value="Bar" />
-                        <label class="pe-3" for="first-rate1" title="Bar">Bar</label>
-                        <input type="radio" id="first-rate3" name="attraction[category]" value="Club" />
-                        <label class="pe-3" for="first-rate1" title="Club">Club</label>
-                        <input type="radio" id="first-rate4" name="attraction[category]" value="Activity" />
-                        <label class="pe-3" for="first-rate1" title="Activity">Activity</label>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="image" class="form-label">Images</label>
-                    <input class="form-control" type="file" id="image" name="image" multiple>
-                </div>
-                <div class="mb-3">
-                    <button class="btn btn-success">Add Attraction</button>
-                </div>
-            </form>
-            <a href="/attractions">All Attractions</a>
+      <div class="mb-3">
+        <label class="form-label" for="price"
+          >Price:
+          <div class="price-level">
+            <span class="price-level-symbol"></span>
+          </div>
+        </label>
+        <div class="input-group" id="price-input">
+          <span class="input-group-text" id="price-label">$</span>
+          <input
+            type="text"
+            class="form-control"
+            id="price"
+            aria-label="Amount (to the nearest dollar)"
+            placeholder="0.00"
+            name="attraction[price]"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
         </div>
-    </div>
-   <script src="/javascripts/autocomplete.js"></script>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADsGaJNG_ZPTRBEGeyMntCL71wkA08bfw&libraries=places&callback=initAutocomplete">
-    </script>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="category">Category</label>
+        <div class="mb-3">
+          <input
+            type="radio"
+            id="first-rate1"
+            name="attraction[category]"
+            value="Restaurant"
+          />
+          <label class="pe-3" for="first-rate1" title="Restaurant"
+            >Restaurant</label
+          >
+          <input
+            type="radio"
+            id="first-rate2"
+            name="attraction[category]"
+            value="Bar"
+          />
+          <label class="pe-3" for="first-rate1" title="Bar">Bar</label>
+          <input
+            type="radio"
+            id="first-rate3"
+            name="attraction[category]"
+            value="Club"
+          />
+          <label class="pe-3" for="first-rate1" title="Club">Club</label>
+          <input
+            type="radio"
+            id="first-rate4"
+            name="attraction[category]"
+            value="Activity"
+          />
+          <label class="pe-3" for="first-rate1" title="Activity"
+            >Activity</label
+          >
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Images</label>
+        <input
+          class="form-control"
+          type="file"
+          id="image"
+          name="image"
+          multiple
+        />
+      </div>
+      <div class="col text-center justify-content-between mb-3">
+        <button class="btn btn-success">Add New Attraction</button>
+        <button class="btn btn-outline-primary">Back to Attractions</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="/javascripts/autocomplete.js"></script>
+<script
+  async
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADsGaJNG_ZPTRBEGeyMntCL71wkA08bfw&libraries=places&callback=initAutocomplete"
+></script>
